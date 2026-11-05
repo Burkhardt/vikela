@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://pypi.org/project/vikela/"><img src="https://img.shields.io/badge/PyPI-vikela-D4AF37?style=flat-square&logo=pypi" alt="PyPI"></a>
   <a href="https://github.com/Burkhardt/RAIkeep/blob/main/doc/CR077_AIA_and_AfricaStage_to_RAIkeep_Vikela_and_JsonPit_Mutation_Guardrails.md"><img src="https://img.shields.io/badge/CR-CR077-blue?style=flat-square" alt="Specification"></a>
-  <a href="docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md"><img src="https://img.shields.io/badge/Identity-Modernist%20Ihawu-AA8214?style=flat-square" alt="Design Spec"></a>
+  <a href="https://github.com/Burkhardt/vikela/blob/main/docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md"><img src="https://img.shields.io/badge/Identity-Modernist%20Ihawu-AA8214?style=flat-square" alt="Design Spec"></a>
 </p>
 
 ---
@@ -77,8 +77,8 @@ Configure in `.vscode/settings.json`:
 ## Visual Identity & Heraldry
 Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometry of the traditional Nguni shield, anchored by the central **Qondisa Axis** (the plumb line that straightens crooked code).
 
-* **Design Specification:** [`docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md`](docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md)
-* **Master Vector:** [`assets/logo.svg`](assets/logo.svg)
+* **Design Specification:** [`docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md`](https://github.com/Burkhardt/vikela/blob/main/docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md)
+* **Master Vector:** [`assets/logo.svg`](https://github.com/Burkhardt/vikela/blob/main/assets/logo.svg)
 * **Curator:** Koyo (Chief Marketing & Web Design Assistant)
 
 
@@ -105,8 +105,8 @@ Exit codes: **0** clean; **1** findings; **2** syntax/configuration;
 or execute the inspected application. `--fix` and `--qondisa` are exact aliases;
 no speculative field-dropping rewrite is available in 4.6.0.
 
-- [Rules, shared project configuration and analysis limits](docs/rules.md)
-- [VS Code, PyCharm and JupyterLab setup](docs/editors.md)
+- [Rules, shared project configuration and analysis limits](https://github.com/Burkhardt/vikela/blob/main/docs/rules.md)
+- [VS Code, PyCharm and JupyterLab setup](https://github.com/Burkhardt/vikela/blob/main/docs/editors.md)
 
 The CLI and plugin share `[tool.vikela]` configuration in pyproject.toml, with a
 `disable` array of logical rule IDs. Checks are bounded and conservative: no
