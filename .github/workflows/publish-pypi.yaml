@@ -1,0 +1,59 @@
+name: Publish Vikela to PyPI
+on:
+  workflow_dispatch:
+    inputs:
+      release_ref:
+        description: Immutable version tag (e.g. v0.1.0)
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify tag and package version
+        env:
+          RELEASE_REF: ${{ inputs.release_ref }}
+        run: |
+          python - <<'PY'
+          import os, re, subprocess, tomllib
+          ref = os.environ['RELEASE_REF']
+          with open('pyproject.toml', 'rb') as stream:
+              project = tomllib.load(stream)['project']
+          if not re.fullmatch(r'v\d+\.\d+\.\d+', ref) or ref != 'v' + project['version']:
+              raise SystemExit('release_ref must equal the package version tag')
+          tag = subprocess.check_output(['git', 'rev-parse', 'refs/tags/' + ref + '^{}'], text=True).strip()
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if tag != head:
+              raise SystemExit('checkout does not match the immutable tag')
+          PY
+      - run: python -m pip install '.[dev]'
+      - run: python -m pytest -q
+      - run: python -m build --outdir dist
+      - run: python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vikela-distributions
+          path: dist/*
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/vikela/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: vikela-distributions
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

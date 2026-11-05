@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vikela"
+version = "0.1.0"
+description = "Python mutation guardrails for JsonPit"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [{name = "Dr. Rainer Burkhardt"}]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Burkhardt/vikela"
+Documentation = "https://github.com/Burkhardt/vikela/blob/main/docs/rules.md"
+
+[project.scripts]
+vikela = "vikela.cli:main"
+
+[project.optional-dependencies]
+pylint = ["pylint>=3.3,<5"]
+notebook = ["ipython>=8"]
+dev = ["pytest>=8", "pylint>=3.3,<5", "ipython>=8", "build", "twine"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["vikela"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.format]
+indent-style = "tab"
