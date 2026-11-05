@@ -27,6 +27,9 @@ dev = ["pytest>=8", "pylint>=3.3,<5", "ipython>=8", "build", "twine"]
 [tool.hatch.build.targets.wheel]
 packages = ["vikela"]
 
+[tool.hatch.build.targets.sdist]
+only-include = ["vikela", "tests", "docs", "assets", "README.md", "LICENSE", "pyproject.toml"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 

@@ -193,3 +193,11 @@ def test_local_import_does_not_leak_into_other_function():
 def test_clone_is_detached_and_merge_is_a_supported_live_patch():
 	assert [f.rule for f in check("item = pit[key].clone()\npit.add(item)")] == ["RAI011"]
 	assert check("item = pit[key]\nitem.merge({'Status': 'Doing'})") == []
+
+
+def test_distribution_and_runtime_versions_launch_in_lockstep():
+	import tomllib
+	from pathlib import Path
+	from vikela import __version__
+	project = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())["project"]
+	assert __version__ == project["version"] == "4.6.0"

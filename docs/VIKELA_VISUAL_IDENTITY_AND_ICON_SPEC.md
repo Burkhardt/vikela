@@ -9,10 +9,10 @@
 
 ---
 
-**Implementation note (0.1.0):** The CLI currently uses the CR077 Unicode shield
+**Implementation note (4.6.0):** The CLI currently uses the CR077 Unicode shield
 badge. Nerd Font variants and repair illustrations below express the visual
 identity direction. `--fix` / `--qondisa` are accepted, but no automatic rewrite
-is approved in 0.1.0; source stays unchanged and actionable suggestions are shown.
+is approved in 4.6.0; source stays unchanged and actionable suggestions are shown.
 RaiGuard/Vikela provide development diagnostics; JsonPit enforces runtime guards.
 
 ## 1. Cultural Lineage & Semantic Architecture

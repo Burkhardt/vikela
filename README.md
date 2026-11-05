@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" width="160" height="160" alt="Vikela Logo" />
+  <img src="https://raw.githubusercontent.com/Burkhardt/vikela/main/assets/vikela-logo.svg" width="160" height="160" alt="Vikela Logo" />
 </p>
 
 <h1 align="center">Vikela 🛡️</h1>
@@ -24,7 +24,7 @@
 ### The Twin-Shield Doctrine
 * **C# development (.NET):** Checked by `RaiGuard`.
 * **Python development:** Checked by `vikela`; JsonPit itself enforces runtime mutation guards.
-* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 0.1.0 provides suggestions and has no approved automatic rewrites.
+* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.6.0 provides suggestions and has no approved automatic rewrites.
 
 ---
 
@@ -43,7 +43,7 @@
 # Standard Scan
 󰞀 vikela .
 
-# Request safe fixes (v0.1.0 reports suggestions and leaves source unchanged)
+# Request safe fixes (v4.6.0 reports suggestions and leaves source unchanged)
 vikela src/ --qondisa
 
 # Pure JSON for CI/CD audit pipelines
@@ -82,7 +82,7 @@ Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometr
 * **Curator:** Koyo (Chief Marketing & Web Design Assistant)
 
 
-## Version 0.1.0 installation and contracts
+## Version 4.6.0 installation and contracts
 
 Vikela is optional development tooling alongside RAIkeep 4.6.0. Neither jsonpit nor
 jpit depends on it. Until publication, install from this checkout in a development
@@ -94,16 +94,16 @@ python -m pytest
 vikela -v
 ```
 
-After publication, install `vikela==0.1.0` for the independent CLI, or
-`vikela[pylint]==0.1.0` inside the project's interpreter for editor checks.
-`vikela[notebook]==0.1.0` adds IPython support in the chosen kernel interpreter.
+After publication, install `vikela==4.6.0` for the independent CLI, or
+`vikela[pylint]==4.6.0` inside the project's interpreter for editor checks.
+`vikela[notebook]==4.6.0` adds IPython support in the chosen kernel interpreter.
 A global CLI environment alone does not expose the checker in another venv.
 
 Exit codes: **0** clean; **1** findings; **2** syntax/configuration;
 **4** internal/environment failure. Pylint retains its own native exit codes.
 `--json` emits a pure array; operational errors go to stderr. Scans do not import
 or execute the inspected application. `--fix` and `--qondisa` are exact aliases;
-no speculative field-dropping rewrite is available in 0.1.0.
+no speculative field-dropping rewrite is available in 4.6.0.
 
 - [Rules, shared project configuration and analysis limits](docs/rules.md)
 - [VS Code, PyCharm and JupyterLab setup](docs/editors.md)
