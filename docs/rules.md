@@ -63,6 +63,6 @@ not a tombstone. Rewriting one into the other requires knowing developer intent.
 ## Suggestions and fixes
 
 Findings contain rule, severity, path, line, column, reason, suggestion,
-documentation URL, optional notebook cell, and fix_available. Version 4.6.0 marks
+documentation URL, optional notebook cell, and fix_available. Version 4.6.1 marks
 all fixes unavailable: --fix and --qondisa are accepted but perform no speculative
 rewrites. File inspection never edits source or executes notebook cells.

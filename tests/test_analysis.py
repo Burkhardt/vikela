@@ -200,4 +200,4 @@ def test_distribution_and_runtime_versions_launch_in_lockstep():
 	from pathlib import Path
 	from vikela import __version__
 	project = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())["project"]
-	assert __version__ == project["version"] == "4.6.0"
+	assert __version__ == project["version"] == "4.6.1"

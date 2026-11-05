@@ -4,7 +4,7 @@ Install the checker in the **selected project's interpreter**, separately from
 production dependencies:
 
 ```sh
-python -m pip install 'vikela[pylint]==4.6.0'
+python -m pip install 'vikela[pylint]==4.6.1'
 ```
 
 Until publication use `python -m pip install -e '/path/to/vikela[pylint]'`.

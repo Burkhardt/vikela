@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release_ref:
-        description: Immutable version tag (e.g. v4.6.0)
+        description: Immutable version tag (e.g. v4.6.1)
         type: string
         required: true
 permissions:
