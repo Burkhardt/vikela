@@ -22,9 +22,9 @@
 **Vikela** (*isiZulu: "to protect / shield"*) provides static analysis and mutation guardrails for `JsonPit` and its surrounding framework across the fleet. It functions both as a standalone CLI (`vikela`) and as a native Pylint checker plugin (`pylint --load-plugins=vikela`).
 
 ### The Twin-Shield Doctrine
-* **C# Runtime (.NET):** Protected by `RaiGuard`.
-* **Python Runtime:** Protected by `vikela`.
-* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), aligning bent mutations into disciplined, cloud-safe sparse deltas.
+* **C# development (.NET):** Checked by `RaiGuard`.
+* **Python development:** Checked by `vikela`; JsonPit itself enforces runtime mutation guards.
+* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 0.1.0 provides suggestions and has no approved automatic rewrites.
 
 ---
 
@@ -33,7 +33,7 @@
 | Rule ID | Diagnostic Symbol | Description |
 | :--- | :--- | :--- |
 | **`RAI011`** | `vikela-full-snapshot-write` | Prevents full-snapshot read-modify-writes that erase concurrent cloud replica fields. |
-| **`RAI012`** | `vikela-protected-attr-mutation` | Protects immutable lifecycle and schema attributes from unauthorized client modification. |
+| **`RAI012`** | `vikela-protected-attribute` | Protects immutable lifecycle and schema attributes from unauthorized client modification. |
 
 ---
 
@@ -43,8 +43,8 @@
 # Standard Scan
 󰞀 vikela .
 
-# Straightening Run (Auto-Fix)
-󰞀 vikela --qondisa
+# Request safe fixes (v0.1.0 reports suggestions and leaves source unchanged)
+vikela src/ --qondisa
 
 # Pure JSON for CI/CD audit pipelines
 vikela src/ --json
@@ -69,7 +69,7 @@ Configure in `.vscode/settings.json`:
 %load_ext vikela
 
 %%vikela
-# Inspects cell mutations before execution
+# Checks this cell WITHOUT executing it
 ```
 
 ---
@@ -80,3 +80,39 @@ Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometr
 * **Design Specification:** [`docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md`](docs/VIKELA_VISUAL_IDENTITY_AND_ICON_SPEC.md)
 * **Master Vector:** [`assets/logo.svg`](assets/logo.svg)
 * **Curator:** Koyo (Chief Marketing & Web Design Assistant)
+
+
+## Version 0.1.0 installation and contracts
+
+Vikela is optional development tooling alongside RAIkeep 4.6.0. Neither jsonpit nor
+jpit depends on it. Until publication, install from this checkout in a development
+virtual environment:
+
+```sh
+python -m pip install -e '.[dev]'
+python -m pytest
+vikela -v
+```
+
+After publication, install `vikela==0.1.0` for the independent CLI, or
+`vikela[pylint]==0.1.0` inside the project's interpreter for editor checks.
+`vikela[notebook]==0.1.0` adds IPython support in the chosen kernel interpreter.
+A global CLI environment alone does not expose the checker in another venv.
+
+Exit codes: **0** clean; **1** findings; **2** syntax/configuration;
+**4** internal/environment failure. Pylint retains its own native exit codes.
+`--json` emits a pure array; operational errors go to stderr. Scans do not import
+or execute the inspected application. `--fix` and `--qondisa` are exact aliases;
+no speculative field-dropping rewrite is available in 0.1.0.
+
+- [Rules, shared project configuration and analysis limits](docs/rules.md)
+- [VS Code, PyCharm and JupyterLab setup](docs/editors.md)
+
+The CLI and plugin share `[tool.vikela]` configuration in pyproject.toml, with a
+`disable` array of logical rule IDs. Checks are bounded and conservative: no
+findings does not prove arbitrary dynamic code safe. Notebook scans follow
+source-cell document order, not previous kernel execution order.
+
+Publication/provisioning is orchestrated by Engenho; production server nodes do
+not receive development lint tooling by default. Native PyCharm inspections are
+milestone 2; milestone 1 supplies an External Tool configuration.

@@ -5,9 +5,15 @@
 **Curator / Design Director:** Koyo (Chief Marketing & Web Design Assistant)  
 **Target Projects:** `Burkhardt/vikela`, `Burkhardt/RAIkeep`, `AIA-Marketing`  
 **Status:** Approved Specification  
-**Asset Link:** [vikela-logo.svg](file:///Users/RSB/Projects/GitHub/AIA-koyo/AIA-Marketing/vikela-logo.svg)
+**Asset Link:** [vikela-logo.svg](../assets/vikela-logo.svg)
 
 ---
+
+**Implementation note (0.1.0):** The CLI currently uses the CR077 Unicode shield
+badge. Nerd Font variants and repair illustrations below express the visual
+identity direction. `--fix` / `--qondisa` are accepted, but no automatic rewrite
+is approved in 0.1.0; source stays unchanged and actionable suggestions are shown.
+RaiGuard/Vikela provide development diagnostics; JsonPit enforces runtime guards.
 
 ## 1. Cultural Lineage & Semantic Architecture
 
