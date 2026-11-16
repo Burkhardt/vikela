@@ -5,7 +5,7 @@
 <h1 align="center">Vikela 🛡️</h1>
 
 <p align="center">
-  <strong>Python mutation guardrails and AST linter for JsonPit.</strong><br>
+  <strong>Python mutation guardrails and AST linter for Umgodi.</strong><br>
   <em>The defensive shield protecting distributed state from concurrent cloud replica stomps.</em>
 </p>
 
@@ -19,11 +19,17 @@
 
 ## Overview
 
-**Vikela** (*isiZulu: "to protect / shield"*) provides static analysis and mutation guardrails for `JsonPit` and its surrounding framework across the fleet. It functions both as a standalone CLI (`vikela`) and as a native Pylint checker plugin (`pylint --load-plugins=vikela`).
+**Vikela** (*isiZulu: "to protect / shield"*) provides static analysis and
+mutation guardrails for [`umgodi-json`](https://github.com/Burkhardt/umgodi-json)
+and the [`inqaba`](https://github.com/Burkhardt/inqaba) framework. It functions
+both as a standalone CLI (`vikela`) and as a native Pylint checker plugin
+(`pylint --load-plugins=vikela`). Umgodi is the active Python continuation of
+the project formerly published as `jsonpit-python`; its storage heritage and
+cross-engine contract come from C# `JsonPit`.
 
 ### The Twin-Shield Doctrine
 * **C# development (.NET):** Checked by `RaiGuard`.
-* **Python development:** Checked by `vikela`; JsonPit itself enforces runtime mutation guards.
+* **Python development:** `umgodi-json` supplies the runtime; `inqaba` supplies shared framework boundaries; `vikela` checks application code against their guardrails.
 * **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.6.4 provides suggestions and has no approved automatic rewrites.
 
 ---
@@ -84,8 +90,8 @@ Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometr
 
 ## Version 4.6.4 installation and contracts
 
-Vikela is optional development tooling alongside RAIkeep 4.6.4. Neither jsonpit nor
-jpit depends on it. Until publication, install from this checkout in a development
+Vikela is optional development tooling alongside RAIkeep 4.6.4. Neither
+`umgodi-json` nor `jpit` depends on it at runtime. Until publication, install from this checkout in a development
 virtual environment:
 
 ```sh
