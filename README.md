@@ -4,6 +4,8 @@
 
 <h1 align="center">Vikela 🛡️</h1>
 
+[Code signing policy](https://github.com/Burkhardt/RAIkeep/blob/main/README_codesigning.md)
+
 <p align="center">
   <strong>Python mutation guardrails and AST linter for Umgodi.</strong><br>
   <em>The defensive shield protecting distributed state from concurrent cloud replica stomps.</em>
