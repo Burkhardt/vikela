@@ -4,7 +4,7 @@
 
 <h1 align="center">Vikela 🛡️</h1>
 
-[Code signing policy](https://github.com/Burkhardt/RAIkeep/blob/main/README_codesigning.md)
+[Code signing policy](https://github.com/Burkhardt/RAIkeep/blob/main/README_codesigning.md) · SignPath Foundation application in preparation; signing is not yet active.
 
 <p align="center">
   <strong>Python mutation guardrails and AST linter for Umgodi.</strong><br>
@@ -32,7 +32,7 @@ cross-engine contract come from C# `JsonPit`.
 ### The Twin-Shield Doctrine
 * **C# development (.NET):** Checked by `RaiGuard`.
 * **Python development:** `umgodi-json` supplies the runtime; `inqaba` supplies shared framework boundaries; `vikela` checks application code against their guardrails.
-* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.6.5 provides suggestions and has no approved automatic rewrites.
+* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.6.6 provides suggestions and has no approved automatic rewrites.
 
 ---
 
@@ -51,7 +51,7 @@ cross-engine contract come from C# `JsonPit`.
 # Standard Scan
 󰞀 vikela .
 
-# Request safe fixes (v4.6.5 reports suggestions and leaves source unchanged)
+# Request safe fixes (v4.6.6 reports suggestions and leaves source unchanged)
 vikela src/ --qondisa
 
 # Pure JSON for CI/CD audit pipelines
@@ -90,9 +90,9 @@ Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometr
 * **Curator:** Koyo (Chief Marketing & Web Design Assistant)
 
 
-## Version 4.6.5 installation and contracts
+## Version 4.6.6 installation and contracts
 
-Vikela is optional development tooling alongside RAIkeep 4.6.5. Neither
+Vikela is optional development tooling alongside RAIkeep 4.6.6. Neither
 `umgodi-json` nor `jpit` depends on it at runtime. Until publication, install from this checkout in a development
 virtual environment:
 
@@ -102,9 +102,9 @@ python -m pytest
 vikela -v
 ```
 
-After publication, install `vikela==4.6.5` for the independent CLI, or
-`vikela[pylint]==4.6.5` inside the project's interpreter for editor checks.
-`vikela[notebook]==4.6.5` adds IPython support in the chosen kernel interpreter.
+After publication, install `vikela==4.6.6` for the independent CLI, or
+`vikela[pylint]==4.6.6` inside the project's interpreter for editor checks.
+`vikela[notebook]==4.6.6` adds IPython support in the chosen kernel interpreter.
 A global CLI environment alone does not expose the checker in another venv.
 
 Exit codes: **0** clean; **1** findings; **2** syntax/configuration;
