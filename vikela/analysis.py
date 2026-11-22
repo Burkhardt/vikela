@@ -62,6 +62,10 @@ def join_values(values):
 	return values[0] if values and all(v == values[0] for v in values) else UNKNOWN
 
 
+PIT_TYPES = {"jsonpit.Pit", "jsonpit.store.Pit", "umgodi.Pit", "umgodi.store.Pit"}
+ITEM_TYPES = {"jsonpit.PitItem", "jsonpit.item.PitItem", "umgodi.PitItem", "umgodi.item.PitItem"}
+
+
 class Analyzer:
 	def __init__(self, source: str, path: str = "<source>"):
 		self.tree = ast.parse(source, filename=path)
@@ -85,8 +89,8 @@ class Analyzer:
 			try: node = ast.parse(node.value, mode="eval").body
 			except SyntaxError: return UNKNOWN
 		name = self.qualified(node, env)
-		if name in {"jsonpit.Pit", "jsonpit.store.Pit"}: return Value("pit", identity)
-		if name in {"jsonpit.PitItem", "jsonpit.item.PitItem"}: return Value("item")
+		if name in PIT_TYPES: return Value("pit", identity)
+		if name in ITEM_TYPES: return Value("item")
 		if isinstance(node, ast.Subscript):
 			element = self.annotated(node.slice, env, identity)
 			if self.qualified(node.value, env) in {"list", "set", "tuple", "typing.List", "typing.Sequence", "typing.Iterable"}:
@@ -147,9 +151,9 @@ class Analyzer:
 	def call(self, node, env):
 		qualified = self.qualified(node.func, env)
 		args = [self.value(arg, env) for arg in node.args]
-		if qualified in {"jsonpit.Pit", "jsonpit.store.Pit"}:
+		if qualified in PIT_TYPES:
 			return Value("pit", f"allocation:{self.scope}:{node.lineno}:{node.col_offset}")
-		if qualified in {"jsonpit.PitItem", "jsonpit.item.PitItem"}:
+		if qualified in ITEM_TYPES:
 			first = args[0] if args else UNKNOWN
 			key = literal(node.args[0]) if node.args else None
 			key = next((literal(k.value) for k in node.keywords if k.arg == "id"), key)

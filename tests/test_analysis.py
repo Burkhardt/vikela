@@ -201,3 +201,9 @@ def test_distribution_and_runtime_versions_launch_in_lockstep():
 	from vikela import __version__
 	project = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())["project"]
 	assert __version__ == project["version"] == "4.6.7"
+
+
+def test_umgodi_constructor_and_annotation_provenance():
+	findings = check("item = PitItem(key)\nitem['Deleted'] = True\npit.add(pit.get_at(key, at=stamp))",
+		prelude="from umgodi.store import Pit\nfrom umgodi import PitItem\n")
+	assert [finding.rule for finding in findings] == ["RAI012", "RAI011"]
