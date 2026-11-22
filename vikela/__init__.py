@@ -1,5 +1,5 @@
 """Vikela: optional development tooling, never a JsonPit runtime dependency."""
-__version__ = "4.6.7"
+__version__ = "4.7.0"
 
 
 def register(linter):
