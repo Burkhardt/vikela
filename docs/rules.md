@@ -6,6 +6,39 @@ The logical IDs agree with RaiGuard. Pylint exposes native IDs and symbols:
 |---|---|---|
 | RAI011 | W9011 | vikela-full-snapshot-write |
 | RAI012 | W9012 | vikela-protected-attribute |
+| RAI021 | E9021 | vikela-test-configuration |
+| RAI022 | E9022 | vikela-test-pit-location |
+| RAI023 | E9023 | vikela-pit-directory |
+
+## RAI023
+
+Reports recognizable Pit constructors passed strings, `pathlib.Path`, file
+objects or `.pit` filenames instead of an Inqaba `InqPath` directory.
+`Pit.open` also accepts a bare cloud Pit name. The CLI may accept a filename
+and resolve it before constructing a Pit. Unknown dynamic argument types and
+cross-module aliases cannot be proven safe by this static check. RAI023 cannot
+be disabled through Vikela's CLI or project configuration.
+
+## RAI021
+
+Reports recognizable configuration substitutions, including writes to a
+`RAIkeep.json5` path, configuration-related environment overrides, synthetic
+cloud mappings, and mocked configuration loaders. It is an error: tests must
+use the actual `~/.config/RAIkeep.json5` and its configured TestCloud.
+The check is static and cannot prove the behavior of dynamic code or resolve
+all aliases. Review findings in production configuration tools in context.
+RAI021 cannot be disabled through Vikela's CLI or project configuration.
+
+## RAI022
+
+Reports recognizable Pit openings and `.pit` or `.pit.tmp` writes rooted in
+system temporary locations or pytest's temporary-path fixtures. Test Pits belong
+in a run-owned directory on the configured TestCloud; exported JSON copies may
+be written to a temporary directory. The check tracks direct local aliases but
+also checks literal Python `-c` subprocess source. It cannot determine every
+dynamic path or cross-module helper. In particular, no
+finding for an unknown path does not prove that the path is inside TestCloud.
+RAI022 cannot be disabled through Vikela's CLI or project configuration.
 
 ## RAI011
 

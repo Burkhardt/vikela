@@ -9,6 +9,9 @@ class MutationChecker(BaseChecker):
 	msgs = {
 		"W9011": ("RAI011: %s Suggestion: %s %s", "vikela-full-snapshot-write", "Unsafe detached projection, cross-owner live handle or retired lifetime write."),
 		"W9012": ("RAI012: %s Suggestion: %s %s", "vikela-protected-attribute", "JsonPit lifecycle metadata is engine-owned."),
+		"E9021": ("RAI021: %s Suggestion: %s %s", "vikela-test-configuration", "RAIkeep configuration must not be substituted."),
+		"E9022": ("RAI022: %s Suggestion: %s %s", "vikela-test-pit-location", "Test Pits must use the configured TestCloud."),
+		"E9023": ("RAI023: %s Suggestion: %s %s", "vikela-pit-directory", "Pit constructors require an InqPath directory."),
 	}
 
 	def visit_module(self, node):
@@ -19,6 +22,6 @@ class MutationChecker(BaseChecker):
 		ignored = disabled_rules(node.file or ".")
 		for finding in analyze(source, node.file or "<module>"):
 			if finding.rule in ignored: continue
-			self.add_message("W9011" if finding.rule == "RAI011" else "W9012",
+			self.add_message({"RAI011": "W9011", "RAI012": "W9012", "RAI021": "E9021", "RAI022": "E9022", "RAI023": "E9023"}[finding.rule],
 				node=node, line=finding.line, col_offset=finding.column - 1,
 				args=(finding.reason, finding.suggestion, finding.documentation))

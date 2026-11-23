@@ -30,7 +30,7 @@ cross-engine contract come from C# `JsonPit`.
 ### The Twin-Shield Doctrine
 * **C# development (.NET):** Checked by `RaiGuard`.
 * **Python development:** `umgodi-json` supplies the runtime; `inqaba` supplies shared framework boundaries; `vikela` checks application code against their guardrails.
-* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.7.0 provides suggestions and has no approved automatic rewrites.
+* **The Straightening Action (`--qondisa`):** An official first-class alias for `--fix` (*isiZulu: "to straighten out / rectify"*), reserved for proven safe repairs. Version 4.7.1 provides suggestions and has no approved automatic rewrites.
 
 ---
 
@@ -40,6 +40,9 @@ cross-engine contract come from C# `JsonPit`.
 | :--- | :--- | :--- |
 | **`RAI011`** | `vikela-full-snapshot-write` | Prevents full-snapshot read-modify-writes that erase concurrent cloud replica fields. |
 | **`RAI012`** | `vikela-protected-attribute` | Protects immutable lifecycle and schema attributes from unauthorized client modification. |
+| **`RAI021`** | `vikela-test-configuration` | Detects recognizable RAIkeep configuration substitutions and writes. |
+| **`RAI022`** | `vikela-test-pit-location` | Detects recognizable test Pits on local temporary paths. |
+| **`RAI023`** | `vikela-pit-directory` | Detects recognizable Pit arguments that are not InqPath directories. |
 
 ---
 
@@ -49,7 +52,7 @@ cross-engine contract come from C# `JsonPit`.
 # Standard Scan
 󰞀 vikela .
 
-# Request safe fixes (v4.7.0 reports suggestions and leaves source unchanged)
+# Request safe fixes (v4.7.1 reports suggestions and leaves source unchanged)
 vikela src/ --qondisa
 
 # Pure JSON for CI/CD audit pipelines
@@ -88,9 +91,9 @@ Vikela's emblem is the **Modernist Ihawu**—drawing from the elliptical geometr
 * **Curator:** Koyo (Chief Marketing & Web Design Assistant)
 
 
-## Version 4.7.0 installation and contracts
+## Version 4.7.1 installation and contracts
 
-Vikela is optional development tooling alongside RAIkeep 4.7.0. Neither
+Vikela is optional development tooling alongside RAIkeep 4.7.1. Neither
 `umgodi-json` nor `jpit` depends on it at runtime. Until publication, install from this checkout in a development
 virtual environment:
 
@@ -100,9 +103,9 @@ python -m pytest
 vikela -v
 ```
 
-After publication, install `vikela==4.7.0` for the independent CLI, or
-`vikela[pylint]==4.7.0` inside the project's interpreter for editor checks.
-`vikela[notebook]==4.7.0` adds IPython support in the chosen kernel interpreter.
+After publication, install `vikela==4.7.1` for the independent CLI, or
+`vikela[pylint]==4.7.1` inside the project's interpreter for editor checks.
+`vikela[notebook]==4.7.1` adds IPython support in the chosen kernel interpreter.
 A global CLI environment alone does not expose the checker in another venv.
 
 Exit codes: **0** clean; **1** findings; **2** syntax/configuration;

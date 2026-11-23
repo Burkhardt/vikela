@@ -11,6 +11,10 @@ import ast
 from dataclasses import asdict, dataclass, replace
 from typing import Iterable
 
+from .configuration_guard import configuration_findings
+from .pit_argument_guard import pit_argument_findings
+from .pit_location_guard import pit_location_findings
+
 DOCS = "https://github.com/Burkhardt/vikela/blob/main/docs/rules.md"
 PROTECTED = {"id", "modified", "deleted"}
 
@@ -104,9 +108,15 @@ class Analyzer:
 		suggestion = (
 			"Update the same-owner live item through indexing or set_property; create a fresh PitItem containing only the intended fields for an explicit delta. Historical replay is not a client-write workaround."
 			if rule == "RAI011" else
+			"Use the real ~/.config/RAIkeep.json5 without modifying, replacing, or mocking it; resolve TestCloud for isolated cloud tests."
+			if rule == "RAI021" else
+			"Create test Pits only in an isolated run-owned directory on the configured TestCloud."
+			if rule == "RAI022" else
+			"Pass an InqPath directory, not a filename or pathlib.Path; Pit.open also accepts a bare cloud Pit name."
+			if rule == "RAI023" else
 			"Let JsonPit manage Id, Modified and Deleted. Use rename_id or delete_item for lifecycle changes; update business properties through the live item."
 		)
-		self.findings.append(Finding(rule, "Warning", self.path, node.lineno, node.col_offset + 1,
+		self.findings.append(Finding(rule, "Error" if rule in {"RAI021", "RAI022", "RAI023"} else "Warning", self.path, node.lineno, node.col_offset + 1,
 			reason, suggestion, DOCS + "#" + rule.lower()))
 
 	def payload_fields(self, node, env):
@@ -326,6 +336,12 @@ class Analyzer:
 
 	def run(self):
 		env = {}; self.block(self.tree.body, env); self.analyze_functions(self.tree.body, env)
+		for node, reason in configuration_findings(self.tree):
+			self.emit("RAI021", node, reason)
+		for node, reason in pit_location_findings(self.tree):
+			self.emit("RAI022", node, reason)
+		for node, reason in pit_argument_findings(self.tree):
+			self.emit("RAI023", node, reason)
 		return sorted(self.findings, key=lambda f: (f.line, f.column, f.rule))
 
 

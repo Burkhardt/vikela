@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release_ref:
-        description: Immutable version tag (e.g. v4.6.2)
+        description: Immutable Git release (in the form vX.Y.Z)
         type: string
         required: true
 permissions:
@@ -12,11 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.release_ref }}
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - name: Verify tag and package version
