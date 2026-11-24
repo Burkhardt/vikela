@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vikela"
-version = "4.7.1"
+version = "4.7.2"
 description = "Python mutation guardrails for JsonPit"
 readme = "README.md"
 requires-python = ">=3.12"
