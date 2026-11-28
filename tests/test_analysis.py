@@ -200,7 +200,7 @@ def test_distribution_and_runtime_versions_launch_in_lockstep():
 	from pathlib import Path
 	from vikela import __version__
 	project = tomllib.loads((Path(__file__).parents[1] / "pyproject.toml").read_text())["project"]
-	assert __version__ == project["version"] == "4.7.2"
+	assert __version__ == project["version"] == "4.7.3"
 
 
 def test_umgodi_constructor_and_annotation_provenance():
